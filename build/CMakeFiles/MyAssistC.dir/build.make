@@ -82,10 +82,38 @@ CMakeFiles/MyAssistC.dir/source/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyAssistC.dir/source/main.cpp.s"
 	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\CPP\MyAssistC\source\main.cpp -o CMakeFiles\MyAssistC.dir\source\main.cpp.s
 
+CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj: CMakeFiles/MyAssistC.dir/flags.make
+CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj: F:/CPP/MyAssistC/source/myKeyboard.cpp
+CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj: CMakeFiles/MyAssistC.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\CPP\MyAssistC\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj -MF CMakeFiles\MyAssistC.dir\source\myKeyboard.cpp.obj.d -o CMakeFiles\MyAssistC.dir\source\myKeyboard.cpp.obj -c F:\CPP\MyAssistC\source\myKeyboard.cpp
+
+CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\CPP\MyAssistC\source\myKeyboard.cpp > CMakeFiles\MyAssistC.dir\source\myKeyboard.cpp.i
+
+CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\CPP\MyAssistC\source\myKeyboard.cpp -o CMakeFiles\MyAssistC.dir\source\myKeyboard.cpp.s
+
+CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj: CMakeFiles/MyAssistC.dir/flags.make
+CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj: F:/CPP/MyAssistC/source/myMouse.cpp
+CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj: CMakeFiles/MyAssistC.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\CPP\MyAssistC\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj -MF CMakeFiles\MyAssistC.dir\source\myMouse.cpp.obj.d -o CMakeFiles\MyAssistC.dir\source\myMouse.cpp.obj -c F:\CPP\MyAssistC\source\myMouse.cpp
+
+CMakeFiles/MyAssistC.dir/source/myMouse.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MyAssistC.dir/source/myMouse.cpp.i"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\CPP\MyAssistC\source\myMouse.cpp > CMakeFiles\MyAssistC.dir\source\myMouse.cpp.i
+
+CMakeFiles/MyAssistC.dir/source/myMouse.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MyAssistC.dir/source/myMouse.cpp.s"
+	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\CPP\MyAssistC\source\myMouse.cpp -o CMakeFiles\MyAssistC.dir\source\myMouse.cpp.s
+
 CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj: CMakeFiles/MyAssistC.dir/flags.make
 CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj: F:/CPP/MyAssistC/source/myWin.cpp
 CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj: CMakeFiles/MyAssistC.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\CPP\MyAssistC\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=F:\CPP\MyAssistC\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj"
 	C:\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj -MF CMakeFiles\MyAssistC.dir\source\myWin.cpp.obj.d -o CMakeFiles\MyAssistC.dir\source\myWin.cpp.obj -c F:\CPP\MyAssistC\source\myWin.cpp
 
 CMakeFiles/MyAssistC.dir/source/myWin.cpp.i: cmake_force
@@ -99,18 +127,22 @@ CMakeFiles/MyAssistC.dir/source/myWin.cpp.s: cmake_force
 # Object files for target MyAssistC
 MyAssistC_OBJECTS = \
 "CMakeFiles/MyAssistC.dir/source/main.cpp.obj" \
+"CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj" \
+"CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj" \
 "CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj"
 
 # External object files for target MyAssistC
 MyAssistC_EXTERNAL_OBJECTS =
 
 MyAssistC.exe: CMakeFiles/MyAssistC.dir/source/main.cpp.obj
+MyAssistC.exe: CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj
+MyAssistC.exe: CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj
 MyAssistC.exe: CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj
 MyAssistC.exe: CMakeFiles/MyAssistC.dir/build.make
 MyAssistC.exe: CMakeFiles/MyAssistC.dir/linkLibs.rsp
 MyAssistC.exe: CMakeFiles/MyAssistC.dir/objects1.rsp
 MyAssistC.exe: CMakeFiles/MyAssistC.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=F:\CPP\MyAssistC\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable MyAssistC.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=F:\CPP\MyAssistC\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable MyAssistC.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MyAssistC.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

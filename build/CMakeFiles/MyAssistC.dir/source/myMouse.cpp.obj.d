@@ -1,5 +1,5 @@
-CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj: \
- F:\CPP\MyAssistC\source\myWin.cpp F:\CPP\MyAssistC\source\myHead.h \
+CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj: \
+ F:\CPP\MyAssistC\source\myMouse.cpp F:\CPP\MyAssistC\source\myHead.h \
  C:/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/stdc++.h \
  C:/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cassert \
  C:/mingw64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \

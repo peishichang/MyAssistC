@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.9"
+						"string" : "3.20"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -221,7 +221,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MyAssistC::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MyAssistC-Debug-fcc90bfff0d91a317bc7.json",
+					"jsonFile" : "target-MyAssistC-Debug-abc4f4e877fd9b6046af.json",
 					"name" : "MyAssistC",
 					"projectIndex" : 0
 				},

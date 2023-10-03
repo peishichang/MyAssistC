@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MyAssistC.dir/source/main.cpp.obj"
   "CMakeFiles/MyAssistC.dir/source/main.cpp.obj.d"
+  "CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj"
+  "CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj.d"
+  "CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj"
+  "CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj.d"
   "CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj"
   "CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj.d"
   "MyAssistC.exe"

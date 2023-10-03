@@ -546,6 +546,54 @@ source/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/main.cpp.s
 .PHONY : source/main.cpp.s
 
+source/myKeyboard.obj: source/myKeyboard.cpp.obj
+.PHONY : source/myKeyboard.obj
+
+# target to build an object file
+source/myKeyboard.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj
+.PHONY : source/myKeyboard.cpp.obj
+
+source/myKeyboard.i: source/myKeyboard.cpp.i
+.PHONY : source/myKeyboard.i
+
+# target to preprocess a source file
+source/myKeyboard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.i
+.PHONY : source/myKeyboard.cpp.i
+
+source/myKeyboard.s: source/myKeyboard.cpp.s
+.PHONY : source/myKeyboard.s
+
+# target to generate assembly for a file
+source/myKeyboard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.s
+.PHONY : source/myKeyboard.cpp.s
+
+source/myMouse.obj: source/myMouse.cpp.obj
+.PHONY : source/myMouse.obj
+
+# target to build an object file
+source/myMouse.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj
+.PHONY : source/myMouse.cpp.obj
+
+source/myMouse.i: source/myMouse.cpp.i
+.PHONY : source/myMouse.i
+
+# target to preprocess a source file
+source/myMouse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/myMouse.cpp.i
+.PHONY : source/myMouse.cpp.i
+
+source/myMouse.s: source/myMouse.cpp.s
+.PHONY : source/myMouse.s
+
+# target to generate assembly for a file
+source/myMouse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/myMouse.cpp.s
+.PHONY : source/myMouse.cpp.s
+
 source/myWin.obj: source/myWin.cpp.obj
 .PHONY : source/myWin.obj
 
@@ -613,6 +661,12 @@ help:
 	@echo ... source/main.obj
 	@echo ... source/main.i
 	@echo ... source/main.s
+	@echo ... source/myKeyboard.obj
+	@echo ... source/myKeyboard.i
+	@echo ... source/myKeyboard.s
+	@echo ... source/myMouse.obj
+	@echo ... source/myMouse.i
+	@echo ... source/myMouse.s
 	@echo ... source/myWin.obj
 	@echo ... source/myWin.i
 	@echo ... source/myWin.s

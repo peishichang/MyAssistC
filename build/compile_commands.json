@@ -7,6 +7,18 @@
 },
 {
   "directory": "F:/CPP/MyAssistC/build",
+  "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\MyAssistC.dir\\source\\myKeyboard.cpp.obj -c F:\\CPP\\MyAssistC\\source\\myKeyboard.cpp",
+  "file": "F:/CPP/MyAssistC/source/myKeyboard.cpp",
+  "output": "CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj"
+},
+{
+  "directory": "F:/CPP/MyAssistC/build",
+  "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\MyAssistC.dir\\source\\myMouse.cpp.obj -c F:\\CPP\\MyAssistC\\source\\myMouse.cpp",
+  "file": "F:/CPP/MyAssistC/source/myMouse.cpp",
+  "output": "CMakeFiles/MyAssistC.dir/source/myMouse.cpp.obj"
+},
+{
+  "directory": "F:/CPP/MyAssistC/build",
   "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\MyAssistC.dir\\source\\myWin.cpp.obj -c F:\\CPP\\MyAssistC\\source\\myWin.cpp",
   "file": "F:/CPP/MyAssistC/source/myWin.cpp",
   "output": "CMakeFiles/MyAssistC.dir/source/myWin.cpp.obj"
