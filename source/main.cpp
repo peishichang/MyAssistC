@@ -1,7 +1,7 @@
 #include "myHead.h"
 
 volatile HWND hwndMW;
-volatile short inputState;
+volatile short capState;
 
 int main(int argc, char const *argv[])
 {
