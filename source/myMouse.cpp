@@ -1,5 +1,7 @@
 #include "myHead.h"
 
+extern HWND hwndMW;
+
 LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	/*
@@ -11,35 +13,19 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	} MOUSEHOOKSTRUCT, FAR* LPMOUSEHOOKSTRUCT, * PMOUSEHOOKSTRUCT;
 	*/
 
-
 	MOUSEHOOKSTRUCT* ms = (MOUSEHOOKSTRUCT*)lParam;
-	POINT pt = ms->pt;
-
-	char state[20] = "未识别";
-
-	if (wParam == WM_LBUTTONDOWN)	// 其余回到文档去找
+	POINT pt = ms->pt;	//pt.x pt.y  LONG型，鼠标位置信息。
+	switch (wParam)
 	{
-		cout << "左键按下" << endl;
+	case WM_LBUTTONDOWN:
+	case WM_RBUTTONDOWN:
+		SetWindowPos(hwndMW, HWND_TOPMOST, 0, 0, 100, 100, SWP_NOMOVE | SWP_NOSIZE);
+		ShowWindow(hwndMW, SW_NORMAL);
+		UpdateWindow(hwndMW);
+		break;
+	default:
+		break;
 	}
-	else if (wParam == WM_LBUTTONUP)	
-	{
-		cout << "左键抬起" << endl;
-	}
-	else if (wParam == WM_MOUSEMOVE)
-	{
-		cout << "移动" << endl;
-	}
-	else if (wParam == WM_RBUTTONDOWN)
-	{
-		cout << "右键按下" << endl;
-	}
-	else if (wParam == WM_RBUTTONUP)
-	{
-		cout << "右键抬起" << endl;
-	}
-
-
-
 	//return 1;	// 吃掉消息
 	return CallNextHookEx(NULL, nCode, wParam, lParam);
 
