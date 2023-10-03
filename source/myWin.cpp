@@ -7,6 +7,7 @@ HDC hdc;
 HBRUSH hbrush1;
 HBRUSH hbrush2;
 HBRUSH hbrush;
+SHORT capState;
 void thread_ShowMW(HWND hwndMW) //刷新主窗口的函数（新线程）
 {
     // 创建窗口的设备上下文
@@ -42,15 +43,27 @@ void thread_ShowMW(HWND hwndMW) //刷新主窗口的函数（新线程）
     UpdateLayeredWindow(hwndMW, hdc, NULL, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);
     while (true)
     {
+        capState = GetKeyState(VK_CAPITAL);
+        if(capState == 0)
+            inputState = 0;
+        else if(capState == 1 and inputState == 0)
+            inputState = 1;
         if (inputState == 1)
         {
             hbrush = hbrush1;
+            ShowWindow(hwndMW, SW_NORMAL);
         }
         else if(inputState == 2)
         {
             hbrush = hbrush2;
+            ShowWindow(hwndMW, SW_NORMAL);
         }
-        if(GetTickCount64() % 50 == 0 )
+        else
+        {
+            hbrush = hbrush1;
+            ShowWindow(hwndMW, SW_HIDE);
+        }
+        if(GetTickCount64() % 50 == 0)
         {
             FillRect(hdcMem, &rcClient, hbrush); 
             UpdateLayeredWindow(hwndMW, hdc, NULL, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);

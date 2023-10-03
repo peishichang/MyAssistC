@@ -4,7 +4,6 @@
 
 extern HWND hwndMW;
 extern BYTE inputState;
-SHORT capState;
 
 // 切换输入法函数
 void switchInputMethod(uint32_t lang)
@@ -26,11 +25,6 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 	}KBDLLHOOKSTRUCT,*LPKBDLLHOOKSTRUCT,*PKBDLLHOOKSTRUCT;
 	*/
 
-    capState = GetKeyState(VK_CAPITAL);
-    if(capState == 0)
-        inputState = 0;
-    else if(capState == 1 and inputState == 0)
-        inputState = 1;
 
 	KBDLLHOOKSTRUCT* ks = (KBDLLHOOKSTRUCT*)lParam;		//消息附加内容，包含低级键盘输入事件信息
 
@@ -39,13 +33,16 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
     uint32_t RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//如果屏蔽消息就设为1
 
 
-    if (wParam == WM_KEYDOWN and capState !=0)
+    if (wParam == WM_KEYDOWN and inputState !=0 )
     {
         if (inputState == 1)
         {
             RetFlag = 1;
             switch (code)
             {
+                case VK_CAPITAL:
+                    RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//如果屏蔽消息就设为1
+                    break;
                 case VK_OEM_3:      //`~
                     inputState = 2;
                 break;
