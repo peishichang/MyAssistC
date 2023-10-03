@@ -3,18 +3,8 @@
 #define EN 0x409    //输入法英文代码
 
 extern HWND hwndMW;
-
-DWORD JDownTime0 = 0;
-DWORD JDownTime1 = 0;
-volatile bool JDownFlag = false;
-volatile bool JSentFlag = false;                 //程序按下的空格标志，当此标志为假时为硬件空格，当此标志问真时为软件空格
-
-DWORD SpaceDownTime0 = 0;
-DWORD SpaceDownTime1 = 0;
-bool SpaceDownFlag = false;
-bool SpaceSentFlag = false;                     //程序按下的空格标志，当此标志为假时为硬件空格，当此标志问真时为软件空格
-
-bool MultiKeysFlag = false;                     //程序使用组合键标志
+extern BYTE inputState;
+SHORT capState;
 
 // 切换输入法函数
 void switchInputMethod(uint32_t lang)
@@ -35,27 +25,56 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 	ULONG_PTR dwExtraInfo;	// 消息附加信息，一般为 0。
 	}KBDLLHOOKSTRUCT,*LPKBDLLHOOKSTRUCT,*PKBDLLHOOKSTRUCT;
 	*/
+
+    capState = GetKeyState(VK_CAPITAL);
+    if(capState == 0)
+        inputState = 0;
+    else if(capState == 1 and inputState == 0)
+        inputState = 1;
+
 	KBDLLHOOKSTRUCT* ks = (KBDLLHOOKSTRUCT*)lParam;		//消息附加内容，包含低级键盘输入事件信息
 
 	DWORD code = ks->vkCode;                    //键盘代号
     DWORD t = ks->time;                         //消息的时间
-    uint32_t KeyState = 0;                      //sendKey用的参数，按键被按下就是0,键盘弹起是1
     uint32_t RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//如果屏蔽消息就设为1
 
-    if (wParam == WM_KEYDOWN)
-        KeyState = 0;
-    else if (wParam == WM_KEYUP)
-        KeyState = 2;
-    switch (code)
+
+    if (wParam == WM_KEYDOWN and capState !=0)
     {
-        case VK_F3:
-            switchInputMethod(CN);
-            break;
-        case VK_F4:
-            switchInputMethod(EN);
-            break;
-        default:
-            break;
+        if (inputState == 1)
+        {
+            RetFlag = 1;
+            switch (code)
+            {
+                case VK_OEM_3:      //`~
+                    inputState = 2;
+                break;
+                case VK_F3:     
+                    switchInputMethod(CN);
+                    break;
+                case VK_F4:
+                    switchInputMethod(EN);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (code)
+            {
+                case VK_OEM_3:      //`~
+                    inputState = 1;
+                    RetFlag = 1;
+                break;
+                default:
+                    break;
+            }
+        }
+    }
+    else if (wParam == WM_KEYUP)
+    {
+        ;
     }
     return RetFlag;             //当键盘输入不是组合输入时，返回CallNextHookEx(NULL, nCode, wParam, lParam); 否则返回1
 }

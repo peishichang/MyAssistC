@@ -19,9 +19,6 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_LBUTTONDOWN:
 	case WM_RBUTTONDOWN:
-		SetWindowPos(hwndMW, HWND_TOPMOST, 0, 0, 100, 100, SWP_NOMOVE | SWP_NOSIZE);
-		ShowWindow(hwndMW, SW_NORMAL);
-		UpdateWindow(hwndMW);
 		break;
 	default:
 		break;

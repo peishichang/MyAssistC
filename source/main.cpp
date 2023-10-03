@@ -1,6 +1,7 @@
 #include "myHead.h"
 
 volatile HWND hwndMW;
+volatile BYTE inputState;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -18,7 +19,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.lpszClassName = CLASS_NAME;
     RegisterClass(&wc);
 
-    hwndMW = CreateWindowEx(WS_EX_LAYERED, CLASS_NAME, "MyAssistC", WS_OVERLAPPEDWINDOW,
+    hwndMW = CreateWindowEx(WS_EX_LAYERED, CLASS_NAME, "MyAssistC", WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
         0, 0, 100, 100, NULL, NULL, hInstance, NULL);
 
     ShowWindow(hwndMW, SW_NORMAL);
@@ -29,5 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
+    UnhookWindowsHookEx(g_Hook);
+    UnhookWindowsHookEx(g_Hook2);
     return 0;
 }
