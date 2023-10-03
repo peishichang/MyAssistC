@@ -4,17 +4,8 @@
 
 extern HWND hwndMW;
 
-DWORD JDownTime0 = 0;
-DWORD JDownTime1 = 0;
-volatile bool JDownFlag = false;
-volatile bool JSentFlag = false;                 //程序按下的空格标志，当此标志为假时为硬件空格，当此标志问真时为软件空格
 
-DWORD SpaceDownTime0 = 0;
-DWORD SpaceDownTime1 = 0;
-bool SpaceDownFlag = false;
-bool SpaceSentFlag = false;                     //程序按下的空格标志，当此标志为假时为硬件空格，当此标志问真时为软件空格
 
-bool MultiKeysFlag = false;                     //程序使用组合键标志
 
 // 切换输入法函数
 void switchInputMethod(uint32_t lang)

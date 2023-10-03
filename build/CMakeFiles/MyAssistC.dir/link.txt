@@ -1,3 +1,3 @@
 "C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\MyAssistC.dir/objects.a
 C:\mingw64\bin\ar.exe qc CMakeFiles\MyAssistC.dir/objects.a @CMakeFiles\MyAssistC.dir\objects1.rsp
-C:\mingw64\bin\g++.exe -g -mwindows -Wl,--whole-archive CMakeFiles\MyAssistC.dir/objects.a -Wl,--no-whole-archive -o MyAssistC.exe -Wl,--out-implib,libMyAssistC.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MyAssistC.dir\linkLibs.rsp
+C:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\MyAssistC.dir/objects.a -Wl,--no-whole-archive -o MyAssistC.exe -Wl,--out-implib,libMyAssistC.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MyAssistC.dir\linkLibs.rsp

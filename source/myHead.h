@@ -13,6 +13,6 @@ using namespace std;
 
 LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+void DrawABox();
 
 #endif
