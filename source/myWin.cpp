@@ -27,10 +27,10 @@ void thread_ShowMW(HWND hwndMW) //刷新主窗口的函数（新线程）
     blend.BlendOp = AC_SRC_OVER;
     blend.BlendFlags = 0;
     blend.AlphaFormat = AC_SRC_ALPHA;
-    blend.SourceConstantAlpha = 100; // 透明度（0-255，255为完全不透明）
+    blend.SourceConstantAlpha = 60; // 透明度（0-255，255为完全不透明）
 
     RECT rcClient;
-    hbrush1 = (HBRUSH)(CreateSolidBrush(RGB(181,230,181)));
+    hbrush1 = (HBRUSH)(CreateSolidBrush(RGB(0,255,0)));
     hbrush2 = (HBRUSH)(CreateSolidBrush(RGB(0,0,255)));
     hbrush = hbrush1;
     GetClientRect(hwndMW, &rcClient);

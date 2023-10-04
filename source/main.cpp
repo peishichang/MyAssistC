@@ -3,7 +3,7 @@
 volatile HWND hwndMW;
 volatile BYTE inputState;
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 
 	HINSTANCE hM = GetModuleHandle(NULL), hK = GetModuleHandle(NULL);
@@ -18,8 +18,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.hInstance = hInstance;
     wc.lpszClassName = CLASS_NAME;
     RegisterClass(&wc);
-
-    hwndMW = CreateWindowEx(WS_EX_LAYERED, CLASS_NAME, "MyAssistC", WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
+//WS_EX_LAYERED 用于半透明图层, WS_EX_TOOLWINDOW，用于隐藏任务栏图标,WS_POPUP弹窗窗口（广告窗口）
+    hwndMW = CreateWindowEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, CLASS_NAME, "MyAssistC", WS_POPUP,
         0, 0, 100, 100, NULL, NULL, hInstance, NULL);
 
     ShowWindow(hwndMW, SW_NORMAL);
