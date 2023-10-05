@@ -4,36 +4,22 @@
 
 extern HWND hwndMW;
 extern BYTE inputState;
-
+BOOL sentKeyFlag = false;
 // 切换输入法函数
 void switchInputMethod(uint32_t lang)
 {
     HWND hwnd = GetForegroundWindow();                     //获取前景程序 hwnd
     SendMessage(hwnd, WM_INPUTLANGCHANGEREQUEST,0, lang);  //0x804 中文，   0x409英文
 }
-
-
+//钩子勾到键盘消息的回调函数
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	/*
-	typedef struct tagKBDLLHOOKSTRUCT {
-	DWORD     vkCode;		// 按键代号
-	DWORD     scanCode;		// 硬件扫描代号，同 vkCode 也可以作为按键的代号。
-	DWORD     flags;		// 事件类型，一般按键按下为 0 抬起为 128。
-	DWORD     time;			// 消息时间戳
-	ULONG_PTR dwExtraInfo;	// 消息附加信息，一般为 0。
-	}KBDLLHOOKSTRUCT,*LPKBDLLHOOKSTRUCT,*PKBDLLHOOKSTRUCT;
-	*/
-
-
 	KBDLLHOOKSTRUCT* ks = (KBDLLHOOKSTRUCT*)lParam;		//消息附加内容，包含低级键盘输入事件信息
-
-	DWORD code = ks->vkCode;                    //键盘代号
-    DWORD t = ks->time;                         //消息的时间
+	DWORD code = ks->vkCode;                            //键盘代号
+    DWORD timek = ks->time;                             //消息的时间
     uint32_t RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//如果屏蔽消息就设为1
-
-
-    if (wParam == WM_KEYDOWN and inputState !=0 )
+    //wParam == WM_KEYDOWN or WM_KEYDOWN 按键被按下或弹起
+    if (wParam == WM_KEYDOWN and inputState !=0 and sentKeyFlag == false)
     {
         if (inputState == 1)
         {
@@ -68,10 +54,6 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
                     break;
             }
         }
-    }
-    else if (wParam == WM_KEYUP)
-    {
-        ;
     }
     return RetFlag;             //当键盘输入不是组合输入时，返回CallNextHookEx(NULL, nCode, wParam, lParam); 否则返回1
 }

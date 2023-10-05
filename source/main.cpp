@@ -2,6 +2,10 @@
 
 volatile HWND hwndMW;
 volatile BYTE inputState;
+volatile int widthSc = 1920;
+volatile int heightSc = 1080;
+volatile int widthMW = 200;
+volatile int heightMW = 30;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -20,7 +24,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     RegisterClass(&wc);
 //WS_EX_LAYERED 用于半透明图层, WS_EX_TOOLWINDOW，用于隐藏任务栏图标,WS_POPUP弹窗窗口（广告窗口）
     hwndMW = CreateWindowEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, CLASS_NAME, "MyAssistC", WS_POPUP,
-        0, 0, 100, 100, NULL, NULL, hInstance, NULL);
+        widthSc- widthMW, heightSc - heightMW, widthMW, heightMW, NULL, NULL, hInstance, NULL);
 
     ShowWindow(hwndMW, SW_NORMAL);
 
