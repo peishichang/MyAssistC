@@ -12,8 +12,8 @@
     #endif
     #ifndef MY_KEYBOARD_STATE
     #define MY_KEYBOARD_STATE
-        #define CN 0x804    //è¾“å…¥æ³•ä¸­æ–‡ä»£ç 
-        #define EN 0x409    //è¾“å…¥æ³•è‹±æ–‡ä»£ç 
+        #define CN 0x804    //ÖĞÎÄÊäÈë·¨
+        #define EN 0x409    //Ó¢ÎÄÊäÈë·¨
         #define HOLD_KEY_TIME 200
     #endif
 

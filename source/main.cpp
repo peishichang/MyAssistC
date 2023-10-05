@@ -1,41 +1,41 @@
 #include "myHead.h"
 
-HWND hwndMW;                    //ç¨‹åºä¸»çª—å£å¥æŸ„
+HWND hwndMW;                    //³ÌĞòÖ÷´°¿Ú¾ä±ú
 volatile int32_t widthSc = 1920;
 volatile int32_t heightSc = 1080;
 volatile int32_t widthMW = 300;
 volatile int32_t heightMW = 30;
 
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    //è®¾ç½®é”®ç›˜é’©å­çš„å‚æ•°
+    //ÉèÖÃ¼üÅÌ¹³×ÓµÄ²ÎÊı
 	HINSTANCE hM = GetModuleHandle(NULL), hK = GetModuleHandle(NULL);
 	HHOOK g_Hook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, hK, 0);	//WH_KEYBOARD_LL 13 
-    //HHOOK g_Hook2 = SetWindowsHookEx(WH_MOUSE_LL, MouseProc, hM, 0);	//WH_MOUSE_LL 14 //é¼ æ ‡é’©å­ï¼Œæš‚æ—¶ç”¨ä¸åˆ°æ³¨é‡Šæ‰ï¼ŒèŠ‚çœèµ„æº
-    //åˆ›å»ºå­çª—å£çš„å‚æ•°
+    //HHOOK g_Hook2 = SetWindowsHookEx(WH_MOUSE_LL, MouseProc, hM, 0);	//WH_MOUSE_LL 14 //Êó±ê¹³×Ó£¬ÔİÊ±ÓÃ²»µ½×¢ÊÍµô£¬½ÚÊ¡×ÊÔ´
+    //´´½¨×Ó´°¿ÚµÄ²ÎÊı
     const char* CLASS_NAME = "MyClass";
     WNDCLASS wc = { 0 };
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.lpszClassName = CLASS_NAME;
     RegisterClass(&wc);
-    //WS_EX_LAYERED ç”¨äºåŠé€æ˜å›¾å±‚, WS_EX_TOOLWINDOWï¼Œç”¨äºéšè—ä»»åŠ¡æ å›¾æ ‡,WS_POPUPå¼¹çª—çª—å£ï¼ˆå¹¿å‘Šçª—å£ï¼‰
+    //WS_EX_LAYERED ÓÃÓÚ°ëÍ¸Ã÷Í¼²ã, WS_EX_TOOLWINDOW£¬ÓÃÓÚÒş²ØÈÎÎñÀ¸Í¼±ê,WS_POPUPµ¯´°´°¿Ú£¨¹ã¸æ´°¿Ú£©
     hwndMW = CreateWindowEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW, CLASS_NAME, "MyAssistC", WS_POPUP,
         widthSc- widthMW, heightSc - heightMW, widthMW, heightMW, NULL, NULL, hInstance, NULL);
     ShowWindow(hwndMW, SW_NORMAL);
 
-    //å¯åŠ¨ä¿¡å·è·å–çº¿ç¨‹
+    //Æô¶¯ĞÅºÅ»ñÈ¡Ïß³Ì
     thread th3 (getSignal, hwndMW);
     th3.detach();
-
-    //ä»¥ä¸‹äº”å¥æ˜¯è°ƒå‡ºè°ƒè¯•ä¿¡æ¯çª—å£ï¼Œæ­£å¼ç‰ˆæœ¬è¦æ³¨é‡Šæ‰
+    //ÒÔÏÂÎå¾äÊÇµ÷³öµ÷ÊÔĞÅÏ¢´°¿Ú£¬ÕıÊ½°æ±¾Òª×¢ÊÍµô
+    /*
     FILE *stream1;
 	AllocConsole();
 	freopen_s(&stream1, "CON", "r", stdin);
 	freopen_s(&stream1, "CON", "w", stdout);
 	freopen_s(&stream1, "CON", "w", stderr);
-
-    //æ¶ˆæ¯å¾ªç¯ï¼Œçª—å£å’Œé”®ç›˜é’©å­éƒ½éœ€è¦æ¶ˆæ¯
+*/
+    //ÏûÏ¢Ñ­»·£¬´°¿ÚºÍ¼üÅÌ¹³×Ó¶¼ĞèÒªÏûÏ¢
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0))
     {
@@ -43,6 +43,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         DispatchMessage(&msg);
     }
     UnhookWindowsHookEx(g_Hook);
-    //UnhookWindowsHookEx(g_Hook2);                 //é¼ æ ‡é’©å­ï¼Œå¦‚æœé¼ æ ‡æ— æ•ˆ
+    //UnhookWindowsHookEx(g_Hook2);                 //Êó±ê¹³×Ó£¬Èç¹ûÊó±êÎŞĞ§
     return 0;
 }

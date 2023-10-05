@@ -17,7 +17,6 @@ void getSignal(HWND hwndMW)
         {
             sendKey(VK_CAPITAL);
         }
-        
         hwndFW = GetForegroundWindow();         //获取当前活动窗口句柄
         GetWindowTextA(hwndFW, str1, MAX_PATH); //获取当前活动窗口的标题，放到str1
         auto position {string(str1).find("Visual Studio Code")};    //判断当前工作窗口是否是VISUAL STUDIO CODE

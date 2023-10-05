@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Site BuildName="Win32-mingw32-make"
-	BuildStamp="20231005-0550-Experimental"
+	BuildStamp="20231005-1334-Experimental"
 	Name="WIN-UDKOU8NNM0A"
 	Generator="ctest-3.27.6"
 	CompilerName="C:/mingw64/bin/g++.exe"
@@ -24,11 +24,11 @@
 	ProcessorClockFrequency="2200"
 	>
 	<Testing>
-		<StartDateTime>Oct 05 13:50 中国标准时间</StartDateTime>
-		<StartTestTime>1696485033</StartTestTime>
+		<StartDateTime>Oct 05 21:36 [NON-UTF-8-BYTE-0xD6]й[NON-UTF-8-BYTE-0xFA][NON-UTF-8-BYTE-0xB1][NON-UTF-8-BYTE-0xEA]׼ʱ[NON-UTF-8-BYTE-0xBC][NON-UTF-8-BYTE-0xE4]</StartDateTime>
+		<StartTestTime>1696513013</StartTestTime>
 		<TestList/>
-		<EndDateTime>Oct 05 13:50 中国标准时间</EndDateTime>
-		<EndTestTime>1696485033</EndTestTime>
+		<EndDateTime>Oct 05 21:36 [NON-UTF-8-BYTE-0xD6]й[NON-UTF-8-BYTE-0xFA][NON-UTF-8-BYTE-0xB1][NON-UTF-8-BYTE-0xEA]׼ʱ[NON-UTF-8-BYTE-0xBC][NON-UTF-8-BYTE-0xE4]</EndDateTime>
+		<EndTestTime>1696513013</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

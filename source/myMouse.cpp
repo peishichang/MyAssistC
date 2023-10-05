@@ -6,7 +6,7 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 
 	MOUSEHOOKSTRUCT* ms = (MOUSEHOOKSTRUCT*)lParam;
-	POINT pt = ms->pt;	//pt.x pt.y  LONGå‹ï¼Œé¼ æ ‡ä½ç½®ä¿¡æ¯ã€‚
+	POINT pt = ms->pt;	//pt.x pt.y  LONGĞÍ£¬Êó±êÎ»ÖÃĞÅÏ¢¡£
 	switch (wParam)
 	{
 	case WM_LBUTTONDOWN:
@@ -15,7 +15,7 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	default:
 		break;
 	}
-	//return 1;	// åƒæ‰æ¶ˆæ¯
+	//return 1;	// ³ÔµôÏûÏ¢
 	return CallNextHookEx(NULL, nCode, wParam, lParam);
 
 }
