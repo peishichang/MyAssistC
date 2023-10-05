@@ -11,7 +11,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     //设置键盘钩子的参数
 	HINSTANCE hM = GetModuleHandle(NULL), hK = GetModuleHandle(NULL);
 	HHOOK g_Hook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, hK, 0);	//WH_KEYBOARD_LL 13 
-    HHOOK g_Hook2 = SetWindowsHookEx(WH_MOUSE_LL, MouseProc, hM, 0);	//WH_MOUSE_LL 14 
+    //HHOOK g_Hook2 = SetWindowsHookEx(WH_MOUSE_LL, MouseProc, hM, 0);	//WH_MOUSE_LL 14 //鼠标钩子，暂时用不到注释掉，节省资源
     //创建子窗口的参数
     const char* CLASS_NAME = "MyClass";
     WNDCLASS wc = { 0 };
@@ -43,6 +43,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         DispatchMessage(&msg);
     }
     UnhookWindowsHookEx(g_Hook);
-    UnhookWindowsHookEx(g_Hook2);
+    //UnhookWindowsHookEx(g_Hook2);                 //鼠标钩子，如果鼠标无效
     return 0;
 }

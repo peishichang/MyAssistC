@@ -10,6 +10,7 @@ DWORD spaceDownTime = 0;
 DWORD spaceUpTime = 0;
 DWORD capDownTime = 0;
 DWORD capUpTime = 0;
+const DWORD holdKeyTime = 200;
 bool spaceReactFlag = false;
 bool capDownFlag = false;
 // 切换输入法函数
@@ -68,7 +69,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
                 RetFlag = 1;
                 spaceUpTime = timek;
                 inputState = lastInputState;
-                if (spaceUpTime - spaceDownTime < 300 and spaceReactFlag == false)
+                if (spaceUpTime - spaceDownTime < holdKeyTime and spaceReactFlag == false)
                 {
                     sendKey(VK_SPACE);
                 }
@@ -80,23 +81,23 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             break;
         case VK_CAPITAL:
             RetFlag = 1;
-            if (timek - capDownTime < 300 and inputState != COMMAND_KBST and inputState != SPACE_KBST and !vimFlag)
+            if (timek - capDownTime < holdKeyTime and inputState != COMMAND_KBST and inputState != SPACE_KBST and !vimFlag)
             {
                 lastInputState = inputState;
                 inputState = COMMAND_KBST;
                 capDownFlag = false;
             }
-            else if (timek - capDownTime < 300 and inputState != NORMAL_KBST and inputState != SPACE_KBST)
+            else if (timek - capDownTime < holdKeyTime and inputState != NORMAL_KBST and inputState != SPACE_KBST)
             {
                 lastInputState = inputState;
                 inputState = NORMAL_KBST;
                 capDownFlag = false;
             }
-            else if (timek - capDownTime >=300 and inputState != CAPITAL_KBST and inputState != SPACE_KBST)
+            else if (timek - capDownTime >= holdKeyTime and inputState != CAPITAL_KBST and inputState != SPACE_KBST)
             {
                 lastInputState = inputState;
                 inputState = CAPITAL_KBST;
-                sendKey(VK_CAPITAL);
+                //sendKey(VK_CAPITAL);
                 capDownFlag = false;
             }
             else if(vimFlag)
@@ -105,7 +106,6 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
                 capDownFlag = false;
             }
             break;
-        
         default:
             break;
         }

@@ -10,10 +10,11 @@
         #define SPACE_KBST 2
         #define CAPITAL_KBST 3
     #endif
-    #ifndef MY_INPUT_STATE
-    #define MY_INPUT_STATE
+    #ifndef MY_KEYBOARD_STATE
+    #define MY_KEYBOARD_STATE
         #define CN 0x804    //输入法中文代码
         #define EN 0x409    //输入法英文代码
+        #define HOLD_KEY_TIME 200
     #endif
 
     #include <bits/stdc++.h>

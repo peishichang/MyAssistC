@@ -13,7 +13,7 @@ void getSignal(HWND hwndMW)
     while(true)
     {
         capState = GetKeyState(VK_CAPITAL);
-        if (capState and inputState != CAPITAL_KBST)
+        if ((!capState and inputState == CAPITAL_KBST) or (capState and inputState != CAPITAL_KBST))
         {
             sendKey(VK_CAPITAL);
         }
@@ -25,6 +25,6 @@ void getSignal(HWND hwndMW)
             vimFlag = true;
         else
             vimFlag = false; 
-        Sleep(20);
+        //Sleep(10);
     }
 }
