@@ -6,6 +6,7 @@ extern bool vimFlag;
 volatile uint8_t inputState;
 volatile uint8_t lastInputState;
 volatile bool sentKeyFlag = false;
+volatile LRESULT RetFlag = 1;
 DWORD spaceDownTime = 0;
 DWORD spaceUpTime = 0;
 DWORD capDownTime = 0;
@@ -18,22 +19,33 @@ void switchInputMethod(uint32_t lang)
 {
     SendMessage(hwndFW, WM_INPUTLANGCHANGEREQUEST,0, lang);  //0x804 中文，   0x409英文
 }
+void sendKeyS(DWORD codeks[], int len)
+{
+    sentKeyFlag = true;
+    for (int i = 0; i < len; i++)
+    {
+        keybd_event(codeks[i],0,0,0);        //按下
+        keybd_event(codeks[i],0,2,0);        //弹起
+    }
+    
+    sentKeyFlag = false;
+}
 void sendKey(uint64_t codek)
 {
     sentKeyFlag = true;
-    keybd_event(codek,0,0,0);        //space 按下
-    keybd_event(codek,0,2,0);        //space 弹起
+    keybd_event(codek,0,0,0);        //按下
+    keybd_event(codek,0,2,0);        //弹起
     sentKeyFlag = false;
 }
 //钩子勾到键盘消息的回调函数
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
+    RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//函数返回值，如果不屏蔽按键直接返回，如果屏蔽返回1
+    if (sentKeyFlag == false){          //只有当按键是真实键盘触发的才会执行按键处理程序。
 	KBDLLHOOKSTRUCT* ks = (KBDLLHOOKSTRUCT*)lParam;		//消息附加内容，包含低级键盘输入事件信息
 	DWORD codek = ks->vkCode;                            //键盘代号
     DWORD timek = ks->time;                             //消息的时间
-    LRESULT RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//如果屏蔽消息就设为1
-    //wParam == WM_KEYDOWN or WM_KEYDOWN 按键被按下或弹起
-    if (wParam == WM_KEYDOWN and sentKeyFlag == false)
+    if (wParam == WM_KEYDOWN)
     {  
         switch (codek)
         {
@@ -59,7 +71,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             break;
         }
     }
-    if (wParam == WM_KEYUP and sentKeyFlag == false)
+    if (wParam == WM_KEYUP)
     {
         switch (codek)
         {
@@ -80,6 +92,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             }
             break;
         case VK_CAPITAL:
+            switchInputMethod(EN);
             RetFlag = 1;
             if (timek - capDownTime < holdKeyTime and inputState != COMMAND_KBST and inputState != SPACE_KBST and !vimFlag)
             {
@@ -97,7 +110,6 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             {
                 lastInputState = inputState;
                 inputState = CAPITAL_KBST;
-                //sendKey(VK_CAPITAL);
                 capDownFlag = false;
             }
             else if(vimFlag)
@@ -110,6 +122,17 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             break;
         }
     }
-    //wcout << inputState << endl; 
-    return RetFlag;             //当键盘输入不是组合输入时，返回CallNextHookEx(NULL, nCode, wParam, lParam); 否则返回1
+    //按键处理程序
+    switch (inputState)
+    {
+    case SPACE_KBST:
+        spaceHandle(wParam, codek);
+        RetFlag = 1;
+        break;
+    
+    default:
+        break;
+    }
+    }
+    return RetFlag;        //当键盘输入不是组合输入时，返回CallNextHookEx(NULL, nCode, wParam, lParam); 否则返回1
 }

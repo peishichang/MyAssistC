@@ -34,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	freopen_s(&stream1, "CON", "r", stdin);
 	freopen_s(&stream1, "CON", "w", stdout);
 	freopen_s(&stream1, "CON", "w", stderr);
-*/
+    */
     //消息循环，窗口和键盘钩子都需要消息
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0))

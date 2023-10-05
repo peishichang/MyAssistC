@@ -1,2 +1,2 @@
 # MyAssistC
-My assistant program.
+My assistant program. 

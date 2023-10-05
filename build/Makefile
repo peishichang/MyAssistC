@@ -546,6 +546,30 @@ source/getSignal.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/getSignal.cpp.s
 .PHONY : source/getSignal.cpp.s
 
+source/inputHandle.obj: source/inputHandle.cpp.obj
+.PHONY : source/inputHandle.obj
+
+# target to build an object file
+source/inputHandle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/inputHandle.cpp.obj
+.PHONY : source/inputHandle.cpp.obj
+
+source/inputHandle.i: source/inputHandle.cpp.i
+.PHONY : source/inputHandle.i
+
+# target to preprocess a source file
+source/inputHandle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/inputHandle.cpp.i
+.PHONY : source/inputHandle.cpp.i
+
+source/inputHandle.s: source/inputHandle.cpp.s
+.PHONY : source/inputHandle.s
+
+# target to generate assembly for a file
+source/inputHandle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/inputHandle.cpp.s
+.PHONY : source/inputHandle.cpp.s
+
 source/main.obj: source/main.cpp.obj
 .PHONY : source/main.obj
 
@@ -685,6 +709,9 @@ help:
 	@echo ... source/getSignal.obj
 	@echo ... source/getSignal.i
 	@echo ... source/getSignal.s
+	@echo ... source/inputHandle.obj
+	@echo ... source/inputHandle.i
+	@echo ... source/inputHandle.s
 	@echo ... source/main.obj
 	@echo ... source/main.i
 	@echo ... source/main.s
