@@ -1,6 +1,6 @@
 #include "myHead.h"
 
-extern HWND hwndFW;             //å‰å°ç¨‹åºå£å¥æŸ„
+extern HWND hwndFW;             //Ç°Ì¨´°¿Ú³ÌĞò¾ä±ú
 extern bool vimFlag;
 
 volatile uint8_t inputState;
@@ -14,18 +14,19 @@ DWORD capUpTime = 0;
 const DWORD holdKeyTime = 200;
 bool spaceReactFlag = false;
 bool capDownFlag = false;
-// åˆ‡æ¢è¾“å…¥æ³•å‡½æ•°
+//ÇĞ»»ÊäÈë·¨º¯Êı
 void switchInputMethod(uint32_t lang)
 {
-    SendMessage(hwndFW, WM_INPUTLANGCHANGEREQUEST,0, lang);  //0x804 ä¸­æ–‡ï¼Œ   0x409è‹±æ–‡
+    SendMessage(hwndFW, WM_INPUTLANGCHANGEREQUEST,0, lang);  //0x804ÖĞÎÄ£¬0x409Ó¢ÎÄ
 }
+//·¢ËÍ°´¼üº¯Êı
 void sendKeyS(DWORD codeks[], int len)
 {
     sentKeyFlag = true;
     for (int i = 0; i < len; i++)
     {
-        keybd_event(codeks[i],0,0,0);        //æŒ‰ä¸‹
-        keybd_event(codeks[i],0,2,0);        //å¼¹èµ·
+        keybd_event(codeks[i],0,0,0);        //°´ÏÂ
+        keybd_event(codeks[i],0,2,0);        //µ¯Æğ
     }
     
     sentKeyFlag = false;
@@ -33,18 +34,18 @@ void sendKeyS(DWORD codeks[], int len)
 void sendKey(uint64_t codek)
 {
     sentKeyFlag = true;
-    keybd_event(codek,0,0,0);        //æŒ‰ä¸‹
-    keybd_event(codek,0,2,0);        //å¼¹èµ·
+    keybd_event(codek,0,0,0);        //°´ÏÂ
+    keybd_event(codek,0,2,0);        //µ¯Æğ
     sentKeyFlag = false;
 }
-//é’©å­å‹¾åˆ°é”®ç›˜æ¶ˆæ¯çš„å›è°ƒå‡½æ•°
+//¼üÅÌ¹³×Ó»Øµ÷º¯Êı
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//å‡½æ•°è¿”å›å€¼ï¼Œå¦‚æœä¸å±è”½æŒ‰é”®ç›´æ¥è¿”å›ï¼Œå¦‚æœå±è”½è¿”å›1
-    if (sentKeyFlag == false){          //åªæœ‰å½“æŒ‰é”®æ˜¯çœŸå®é”®ç›˜è§¦å‘çš„æ‰ä¼šæ‰§è¡ŒæŒ‰é”®å¤„ç†ç¨‹åºã€‚
-	KBDLLHOOKSTRUCT* ks = (KBDLLHOOKSTRUCT*)lParam;		//æ¶ˆæ¯é™„åŠ å†…å®¹ï¼ŒåŒ…å«ä½çº§é”®ç›˜è¾“å…¥äº‹ä»¶ä¿¡æ¯
-	DWORD codek = ks->vkCode;                            //é”®ç›˜ä»£å·
-    DWORD timek = ks->time;                             //æ¶ˆæ¯çš„æ—¶é—´
+    RetFlag = CallNextHookEx(NULL, nCode, wParam, lParam);//¼üÅÌÏûÏ¢´¦Àí£¬ÖÃ1ÍÌµôÏûÏ¢£¬·µ»ØÕâÒ»¾äÊÇ½«ÏûÊ§·µ»ØÏûÏ¢³Ø
+    if (sentKeyFlag == false){          //ÅĞ¶ÏÊÇ·ñÊÇ³ÌĞò±¾Éí·¢³ö¼üÅÌÏûÏ¢£¬¶ø·ÇÎïÀí¼üÅÌµÄÏûÏ¢ 
+	KBDLLHOOKSTRUCT* ks = (KBDLLHOOKSTRUCT*)lParam;
+	DWORD codek = ks->vkCode;                            //¼üÅÌ´úÂë
+    DWORD timek = ks->time;                             //ÏûÏ¢Ê±¼ä
     if (wParam == WM_KEYDOWN)
     {  
         switch (codek)
@@ -122,7 +123,7 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             break;
         }
     }
-    //æŒ‰é”®å¤„ç†ç¨‹åº
+    //¸ù¾İ¼üÅÌÏÖÔÚµÄ×´Ì¬£¬·ÖÅä°´¼ü´¦Àíº¯Êı¡£
     switch (inputState)
     {
     case SPACE_KBST:
@@ -134,5 +135,5 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
         break;
     }
     }
-    return RetFlag;        //å½“é”®ç›˜è¾“å…¥ä¸æ˜¯ç»„åˆè¾“å…¥æ—¶ï¼Œè¿”å›CallNextHookEx(NULL, nCode, wParam, lParam); å¦åˆ™è¿”å›1
+    return RetFlag;
 }
