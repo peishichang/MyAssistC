@@ -1,6 +1,12 @@
 [
 {
   "directory": "F:/CPP/MyAssistC/build",
+  "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\MyAssistC.dir\\source\\getSignal.cpp.obj -c F:\\CPP\\MyAssistC\\source\\getSignal.cpp",
+  "file": "F:/CPP/MyAssistC/source/getSignal.cpp",
+  "output": "CMakeFiles/MyAssistC.dir/source/getSignal.cpp.obj"
+},
+{
+  "directory": "F:/CPP/MyAssistC/build",
   "command": "C:\\mingw64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\MyAssistC.dir\\source\\main.cpp.obj -c F:\\CPP\\MyAssistC\\source\\main.cpp",
   "file": "F:/CPP/MyAssistC/source/main.cpp",
   "output": "CMakeFiles/MyAssistC.dir/source/main.cpp.obj"

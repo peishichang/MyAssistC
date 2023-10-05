@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MyAssistC.dir/source/getSignal.cpp.obj"
+  "CMakeFiles/MyAssistC.dir/source/getSignal.cpp.obj.d"
   "CMakeFiles/MyAssistC.dir/source/main.cpp.obj"
   "CMakeFiles/MyAssistC.dir/source/main.cpp.obj.d"
   "CMakeFiles/MyAssistC.dir/source/myKeyboard.cpp.obj"

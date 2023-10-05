@@ -1,17 +1,19 @@
 #include "myHead.h"
 
-extern BYTE inputState;
-extern int widthSc;
-extern int heightSc;
-extern int widthMW;
-extern int heightMW;
+extern uint8_t inputState;
+extern int32_t widthSc;
+extern int32_t heightSc;
+extern int32_t widthMW;
+extern int32_t heightMW;
+
 HDC hdcMem;
 HBITMAP hBitmap;
 HDC hdc;
+HBRUSH hbrush0;
 HBRUSH hbrush1;
 HBRUSH hbrush2;
+HBRUSH hbrush3;
 HBRUSH hbrush;
-SHORT capState;
 //刷新主窗口及各种状态的函数（新线程）
 void thread_ShowMW(HWND hwndMW) 
 {
@@ -32,8 +34,10 @@ void thread_ShowMW(HWND hwndMW)
     blend.AlphaFormat = AC_SRC_ALPHA;
     blend.SourceConstantAlpha = 100; // 透明度（0-255，255为完全不透明）
     RECT rcClient;
+    hbrush0 = (HBRUSH)(CreateSolidBrush(RGB(255,255,255)));
     hbrush1 = (HBRUSH)(CreateSolidBrush(RGB(0,255,0)));
     hbrush2 = (HBRUSH)(CreateSolidBrush(RGB(0,0,255)));
+    hbrush3 = (HBRUSH)(CreateSolidBrush(RGB(255,0,0)));
     hbrush = hbrush1;
     GetClientRect(hwndMW, &rcClient);
     FillRect(hdcMem, &rcClient, hbrush);
@@ -43,35 +47,34 @@ void thread_ShowMW(HWND hwndMW)
     POINT ptSrc = { 0, 0 };
     UpdateLayeredWindow(hwndMW, hdc, &ptDst, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);
     
+    int64_t timeMS = GetTickCount64();
     while (true)
     {
-        capState = GetKeyState(VK_CAPITAL);
-        if(capState == 0)
-            inputState = 0;
-        else if(capState == 1 and inputState == 0)
-            inputState = 1;
-        if (inputState == 1)
+        if (inputState == COMMAND_KBST)
         {
             hbrush = hbrush1;
-            ShowWindow(hwndMW, SW_NORMAL);
+            ShowWindow(hwndMW, SW_NORMAL);  //SW_HIDE可以将窗体隐藏
         }
-        else if(inputState == 2)
+        else if(inputState == SPACE_KBST)
         {
             hbrush = hbrush2;
             ShowWindow(hwndMW, SW_NORMAL);
         }
-        else
+        else if(inputState == CAPITAL_KBST)
         {
-            hbrush = hbrush1;
-            ShowWindow(hwndMW, SW_HIDE);
+            hbrush = hbrush3;
+            ShowWindow(hwndMW, SW_NORMAL);
         }
-        if(GetTickCount64() % 50 == 0)
-        {   
-            FillRect(hdcMem, &rcClient, hbrush); 
-            UpdateLayeredWindow(hwndMW, hdc, NULL, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);
-            SetWindowPos(hwndMW, HWND_TOPMOST, widthSc-widthMW, heightSc-heightMW, widthMW, heightMW, SWP_NOMOVE | SWP_NOSIZE);
-            UpdateWindow(hwndMW);
+        else if(inputState == NORMAL_KBST)
+        {
+            hbrush = hbrush0;
+            ShowWindow(hwndMW, SW_NORMAL);
         }
+        FillRect(hdcMem, &rcClient, hbrush); 
+        UpdateLayeredWindow(hwndMW, hdc, NULL, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);
+        SetWindowPos(hwndMW, HWND_TOPMOST, widthSc-widthMW, heightSc-heightMW, widthMW, heightMW, SWP_NOMOVE | SWP_NOSIZE);
+        UpdateWindow(hwndMW);
+        Sleep(20);
     }
 }
 LRESULT CALLBACK WndProc(HWND hwndMW, UINT msg, WPARAM wParam, LPARAM lParam)

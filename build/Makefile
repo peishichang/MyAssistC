@@ -522,6 +522,30 @@ MyAssistC/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/build
 .PHONY : MyAssistC/fast
 
+source/getSignal.obj: source/getSignal.cpp.obj
+.PHONY : source/getSignal.obj
+
+# target to build an object file
+source/getSignal.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/getSignal.cpp.obj
+.PHONY : source/getSignal.cpp.obj
+
+source/getSignal.i: source/getSignal.cpp.i
+.PHONY : source/getSignal.i
+
+# target to preprocess a source file
+source/getSignal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/getSignal.cpp.i
+.PHONY : source/getSignal.cpp.i
+
+source/getSignal.s: source/getSignal.cpp.s
+.PHONY : source/getSignal.s
+
+# target to generate assembly for a file
+source/getSignal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MyAssistC.dir\build.make CMakeFiles/MyAssistC.dir/source/getSignal.cpp.s
+.PHONY : source/getSignal.cpp.s
+
 source/main.obj: source/main.cpp.obj
 .PHONY : source/main.obj
 
@@ -658,6 +682,9 @@ help:
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
 	@echo ... MyAssistC
+	@echo ... source/getSignal.obj
+	@echo ... source/getSignal.i
+	@echo ... source/getSignal.s
 	@echo ... source/main.obj
 	@echo ... source/main.i
 	@echo ... source/main.s
