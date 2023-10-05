@@ -2,11 +2,11 @@
 
 extern uint8_t inputState;
 
-volatile HWND hwndFW;           //å‰å°ç¨‹åºå£å¥æŸ„
-volatile int16_t capState;      //è·å–é”®ç›˜å¤§å°å†™çŠ¶æ€
+volatile HWND hwndFW;           //Ç°Ì¨³ÌĞò¿Ú¾ä±ú
+volatile int16_t capState;      //»ñÈ¡¼üÅÌ´óĞ¡Ğ´×´Ì¬
 
 CHAR str1[MAX_PATH] = {0};
-volatile bool vimFlag = false;  //æ˜¯å¦åœ¨VIMæ¨¡å¼ä¸­ç¼–è¾‘
+volatile bool vimFlag = false;  //ÊÇ·ñÔÚVIMÄ£Ê½ÖĞ±à¼­
 
 void getSignal(HWND hwndMW)
 {
@@ -17,9 +17,9 @@ void getSignal(HWND hwndMW)
         {
             sendKey(VK_CAPITAL);
         }
-        hwndFW = GetForegroundWindow();         //è·å–å½“å‰æ´»åŠ¨çª—å£å¥æŸ„
-        GetWindowTextA(hwndFW, str1, MAX_PATH); //è·å–å½“å‰æ´»åŠ¨çª—å£çš„æ ‡é¢˜ï¼Œæ”¾åˆ°str1
-        auto position {string(str1).find("Visual Studio Code")};    //åˆ¤æ–­å½“å‰å·¥ä½œçª—å£æ˜¯å¦æ˜¯VISUAL STUDIO CODE
+        hwndFW = GetForegroundWindow();         //»ñÈ¡µ±Ç°»î¶¯´°¿Ú¾ä±ú
+        GetWindowTextA(hwndFW, str1, MAX_PATH); //»ñÈ¡µ±Ç°»î¶¯´°¿ÚµÄ±êÌâ£¬·Åµ½str1
+        auto position {string(str1).find("Visual Studio Code")};    //ÅĞ¶Ïµ±Ç°¹¤×÷´°¿ÚÊÇ·ñÊÇVISUAL STUDIO CODE
         if(position != string::npos)
             vimFlag = true;
         else

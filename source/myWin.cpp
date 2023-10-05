@@ -14,25 +14,25 @@ HBRUSH hbrush1;
 HBRUSH hbrush2;
 HBRUSH hbrush3;
 HBRUSH hbrush;
-//åˆ·æ–°ä¸»çª—å£åŠå„ç§çŠ¶æ€çš„å‡½æ•°ï¼ˆæ–°çº¿ç¨‹ï¼‰
+//Ë¢ĞÂÖ÷´°¿Ú¼°¸÷ÖÖ×´Ì¬µÄº¯Êı£¨ĞÂÏß³Ì£©
 void thread_ShowMW(HWND hwndMW) 
 {
-    HDC hdc = GetDC(NULL);                      //å¾—åˆ°å±å¹•DC  è¿›è€Œè·å–å±å¹•åˆ†è¾¨ç‡
-	widthSc = GetDeviceCaps(hdc, HORZRES);      // å®½  
-	heightSc = GetDeviceCaps(hdc, VERTRES);     // é«˜   
-	ReleaseDC(NULL, hdc);                       // é‡Šæ”¾DC
-    // åˆ›å»ºçª—å£çš„è®¾å¤‡ä¸Šä¸‹æ–‡
+    HDC hdc = GetDC(NULL);                      //µÃµ½ÆÁÄ»DC  ½ø¶ø»ñÈ¡ÆÁÄ»·Ö±æÂÊ
+	widthSc = GetDeviceCaps(hdc, HORZRES);      // ¿í  
+	heightSc = GetDeviceCaps(hdc, VERTRES);     // ¸ß   
+	ReleaseDC(NULL, hdc);                       // ÊÍ·ÅDC
+    // ´´½¨´°¿ÚµÄÉè±¸ÉÏÏÂÎÄ
     hdc = GetDC(hwndMW);
-    // åˆ›å»ºé€æ˜ä½å›¾
+    // ´´½¨Í¸Ã÷Î»Í¼
     hBitmap = CreateCompatibleBitmap(hdc, widthMW, heightMW);
     hdcMem = CreateCompatibleDC(hdc);
     SelectObject(hdcMem, hBitmap);
-    // ç»˜åˆ¶é€æ˜èƒŒæ™¯
+    // »æÖÆÍ¸Ã÷±³¾°
     BLENDFUNCTION blend = { 0 };
     blend.BlendOp = AC_SRC_OVER;
     blend.BlendFlags = 0;
     blend.AlphaFormat = AC_SRC_ALPHA;
-    blend.SourceConstantAlpha = 100; // é€æ˜åº¦ï¼ˆ0-255ï¼Œ255ä¸ºå®Œå…¨ä¸é€æ˜ï¼‰
+    blend.SourceConstantAlpha = 100; // Í¸Ã÷¶È£¨0-255£¬255ÎªÍêÈ«²»Í¸Ã÷£©
     RECT rcClient;
     hbrush0 = (HBRUSH)(CreateSolidBrush(RGB(255,255,255)));
     hbrush1 = (HBRUSH)(CreateSolidBrush(RGB(0,255,0)));
@@ -41,7 +41,7 @@ void thread_ShowMW(HWND hwndMW)
     hbrush = hbrush1;
     GetClientRect(hwndMW, &rcClient);
     FillRect(hdcMem, &rcClient, hbrush);
-    // ä½¿ç”¨UpdateLayeredWindowå‡½æ•°è®¾ç½®çª—å£ä¸ºé€æ˜çª—å£
+    // Ê¹ÓÃUpdateLayeredWindowº¯ÊıÉèÖÃ´°¿ÚÎªÍ¸Ã÷´°¿Ú
     POINT ptDst = { widthSc-widthMW, heightSc - heightMW };
     SIZE sizeWnd = { widthMW, heightMW };
     POINT ptSrc = { 0, 0 };
@@ -53,7 +53,7 @@ void thread_ShowMW(HWND hwndMW)
         if (inputState == COMMAND_KBST)
         {
             hbrush = hbrush1;
-            ShowWindow(hwndMW, SW_NORMAL);  //SW_HIDEå¯ä»¥å°†çª—ä½“éšè—
+            ShowWindow(hwndMW, SW_NORMAL);  //SW_HIDE¿ÉÒÔ½«´°ÌåÒş²Ø
         }
         else if(inputState == SPACE_KBST)
         {
@@ -89,7 +89,7 @@ LRESULT CALLBACK WndProc(HWND hwndMW, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         case WM_DESTROY:
             PostQuitMessage(0);
-            // é‡Šæ”¾èµ„æº
+            // ÊÍ·Å×ÊÔ´
             DeleteDC(hdcMem);
             DeleteObject(hBitmap);
             ReleaseDC(hwndMW, hdc);
