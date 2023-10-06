@@ -19,7 +19,11 @@ void spaceHandle(WPARAM wParam, DWORD codek)
             sendKey(VK_RIGHT);
             break;
         case 'N':
-            switchInputMethod(CN); 
+            if (true)
+            {
+                thread thSWInputM (switchInputMethod, CN);
+                thSWInputM.detach();
+            }
             break;
         case '1':
             if (vimFlag)

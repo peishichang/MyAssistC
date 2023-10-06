@@ -92,7 +92,11 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
             }
             break;
         case VK_CAPITAL:
-            switchInputMethod(EN);
+            if (true)
+            {
+                thread thSWInputM (switchInputMethod, EN);
+                thSWInputM.detach();
+            }
             RetFlag = 1;
             if (timek - capDownTime < holdKeyTime and inputState != COMMAND_KBST and inputState != SPACE_KBST and !vimFlag)
             {
