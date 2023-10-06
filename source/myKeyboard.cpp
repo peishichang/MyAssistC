@@ -2,6 +2,7 @@
 
 extern HWND hwndFW;             //前台窗口程序句柄
 extern bool vimFlag;
+extern char* debugText;
 
 volatile uint8_t inputState;
 volatile uint8_t lastInputState;
@@ -20,15 +21,13 @@ void switchInputMethod(uint32_t lang)
     SendMessage(hwndFW, WM_INPUTLANGCHANGEREQUEST,0, lang);  //0x804中文，0x409英文
 }
 //发送按键函数
-void sendKeyS(DWORD codeks[], int len)
+void sendKeyM(DWORD codekm, DWORD codek)
 {
     sentKeyFlag = true;
-    for (int i = 0; i < len; i++)
-    {
-        keybd_event(codeks[i],0,0,0);        //按下
-        keybd_event(codeks[i],0,2,0);        //弹起
-    }
-    
+    keybd_event(codekm,0,0,0);        //按下
+    keybd_event(codek,0,0,0);        //按下
+    keybd_event(codek,0,2,0);        //弹起
+    keybd_event(codekm,0,2,0);       //弹起
     sentKeyFlag = false;
 }
 void sendKey(uint64_t codek)

@@ -21,6 +21,6 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void getSignal(HWND hwndMW);
 void sendKey(uint64_t codek);
-void sendKeyS(DWORD codeks[], int len);
+void sendKeyM(DWORD codekm, DWORD codek);
 void spaceHandle(WPARAM wParam, DWORD codek);
 void switchInputMethod(uint32_t lang);

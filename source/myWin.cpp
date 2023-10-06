@@ -6,10 +6,12 @@ extern int32_t heightSc;
 extern int32_t widthMW;
 extern int32_t heightMW;
 
-HDC hdcMem;
-HBITMAP hBitmap;
-HDC hdc;
-HBRUSH hbrush0;
+char* debugText;        //定义一个用于在窗口输出调试信息的字符串变量。
+
+HDC hdcMem;             //定义一个内存HDC变量，用于在窗口绘制图像
+HBITMAP hBitmap;        //定义一个位图变量
+HDC hdc;                //定义一个hdc变量， 用于存放屏幕dc 
+HBRUSH hbrush0;         //屏幕画刷，不同颜色用不同画刷，没有编号的是传递画刷的变量
 HBRUSH hbrush1;
 HBRUSH hbrush2;
 HBRUSH hbrush3;
@@ -17,6 +19,8 @@ HBRUSH hbrush;
 //刷新主窗口及各种状态的函数（新线程）
 void thread_ShowMW(HWND hwndMW) 
 {
+    debugText = new char[100];                  //为DEBUGText申请内存
+    strcpy(debugText,"");                       //设置debugText的内容
     HDC hdc = GetDC(NULL);                      //得到屏幕DC  进而获取屏幕分辨率
 	widthSc = GetDeviceCaps(hdc, HORZRES);      // 宽  
 	heightSc = GetDeviceCaps(hdc, VERTRES);     // 高   
@@ -34,22 +38,21 @@ void thread_ShowMW(HWND hwndMW)
     blend.AlphaFormat = AC_SRC_ALPHA;
     blend.SourceConstantAlpha = 100; // 透明度（0-255，255为完全不透明）
     RECT rcClient;
-    hbrush0 = (HBRUSH)(CreateSolidBrush(RGB(255,255,255)));
+    hbrush0 = (HBRUSH)(CreateSolidBrush(RGB(255,255,255)));     //创建不同颜色的笔刷
     hbrush1 = (HBRUSH)(CreateSolidBrush(RGB(0,255,0)));
     hbrush2 = (HBRUSH)(CreateSolidBrush(RGB(0,0,255)));
     hbrush3 = (HBRUSH)(CreateSolidBrush(RGB(255,0,0)));
     hbrush = hbrush1;
     GetClientRect(hwndMW, &rcClient);
-    FillRect(hdcMem, &rcClient, hbrush);
+    FillRect(hdcMem, &rcClient, hbrush);                    //用不同颜色的笔刷绘制矩形框
     // 使用UpdateLayeredWindow函数设置窗口为透明窗口
-    POINT ptDst = { widthSc-widthMW, heightSc - heightMW };
-    SIZE sizeWnd = { widthMW, heightMW };
-    POINT ptSrc = { 0, 0 };
+    POINT ptDst = { widthSc-widthMW, heightSc - heightMW }; //窗口位置
+    SIZE sizeWnd = { widthMW, heightMW };                   //窗口大小
+    POINT ptSrc = { 0, 0 };                                 //绘图的位置
     UpdateLayeredWindow(hwndMW, hdc, &ptDst, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);
     
-    int64_t timeMS = GetTickCount64();
     while (true)
-    {
+    {   //根据输入输出的状态选择笔刷，决定窗口是否显示
         if (inputState == COMMAND_KBST)
         {
             hbrush = hbrush1;
@@ -70,7 +73,13 @@ void thread_ShowMW(HWND hwndMW)
             hbrush = hbrush0;
             ShowWindow(hwndMW, SW_NORMAL);
         }
-        FillRect(hdcMem, &rcClient, hbrush); 
+        FillRect(hdcMem, &rcClient, hbrush);          //用于输入状态对应颜色的笔刷画矩形
+        if (debugText != 0)
+        {
+            // string str1 = to_string(inputState); debugText赋值方法
+            // strcpy(debugText, str1.data());
+            TextOut(hdcMem, 0, 0, LPCSTR(debugText), strlen(debugText));//在窗口输出调试信息文字
+        }
         UpdateLayeredWindow(hwndMW, hdc, NULL, &sizeWnd, hdcMem, &ptSrc, 0, &blend, ULW_ALPHA);
         SetWindowPos(hwndMW, HWND_TOPMOST, widthSc-widthMW, heightSc-heightMW, widthMW, heightMW, SWP_NOMOVE | SWP_NOSIZE);
         UpdateWindow(hwndMW);

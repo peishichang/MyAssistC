@@ -19,15 +19,50 @@ void spaceHandle(WPARAM wParam, DWORD codek)
             sendKey(VK_RIGHT);
             break;
         case 'N':
-            if (vimFlag)
-            {
-                DWORD codeks[] = {VK_END, DWORD('A'), VK_DIVIDE, VK_DIVIDE};
-                thread thSendKeys (sendKeyS, codeks, 4);
-                thSendKeys.detach();
-            }
             switchInputMethod(CN); 
             break;
-        
+        case '1':
+            if (vimFlag)
+            {
+                thread thSendKeys (sendKeyM, VK_CONTROL, VK_NUMPAD1);
+                thSendKeys.detach();
+            }
+            break;
+        case '2':
+            if (vimFlag)
+            {
+                thread thSendKeys (sendKeyM, VK_CONTROL, VK_NUMPAD2);
+                thSendKeys.detach();
+            }
+            break;
+        case '3':
+            if (vimFlag)
+            {
+                thread thSendKeys (sendKeyM, VK_CONTROL, VK_NUMPAD3);
+                thSendKeys.detach();
+            }
+            break;
+        case '4':
+            if (vimFlag)
+            {
+                thread thSendKeys (sendKeyM, VK_CONTROL, VK_NUMPAD4);
+                thSendKeys.detach();
+            }
+            break;
+        case '5':
+            if (vimFlag)
+            {
+                thread thSendKeys (sendKeyM, VK_CONTROL, VK_NUMPAD5);
+                thSendKeys.detach();
+            }
+            break;
+        case '6':
+            if (vimFlag)
+            {
+                thread thSendKeys (sendKeyM, VK_CONTROL, VK_NUMPAD6);
+                thSendKeys.detach();
+            }
+            break;
         default:
             break;
         }

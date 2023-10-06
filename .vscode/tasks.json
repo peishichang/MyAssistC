@@ -10,6 +10,7 @@
                 "-std=c++20",
                 "${fileDirname}\\*.cpp",
                 "-fexec-charset=gbk",
+                "-finput-charset=gbk",
                 "-lgdi32",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"

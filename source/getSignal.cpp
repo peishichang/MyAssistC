@@ -24,6 +24,6 @@ void getSignal(HWND hwndMW)
             vimFlag = true;
         else
             vimFlag = false; 
-        //Sleep(10);
+        Sleep(10);
     }
 }
